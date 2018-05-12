@@ -1,0 +1,59 @@
+<h2 class="text-center">Sign up</h2>
+
+<div class="row">
+  <div class="col-md-10">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+
+    <%= devise_error_messages! %>
+
+    <div class="form-group">
+      <div class="control-label col-md-3">
+        <%= f.label :email, class: 'pull-right' %>
+      </div>
+      <div class="col-md-9">
+        <%= f.email_field :email, class: "form-control", autofocus: true%>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="control-label col-md-3" style="margin-top: 15px;">
+        <%= f.label :password,  class: 'pull-right' %>
+        <% if @minimum_password_length %>
+          
+        <% end %>
+      </div>
+      <div class="col-md-9" style="margin-top: 15px;">
+        <%= f.password_field :password, class: "form-control", autocomplete: "off" %>
+      </div>
+    </div>
+
+    <div class="em">
+      <em>(6 characters minimum)</em>
+    </div>
+
+    <div class="form-group">
+      <div class="control-label col-md-3" style="margin-top: 0px;">
+        <%= f.label :password_confirmation,  class: 'pull-right' %>
+      </div>
+      <div class="col-md-9" style="margin-top: 0px;">
+        <%= f.password_field :password_confirmation, class: "form-control", autocomplete: "off" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-md-offset-3 col-md-9" style="margin-top: 1px;">
+        <%= f.submit "Sign up", class: "btn btn-primary btn-lg" %>
+      
+      </div>
+    </div>
+
+    <% end %>
+  </div>
+
+  <!-- <div class="form-group">
+    <div class="col-md-offset-3 col-md-9">
+      <%= render "devise/shared/links" %>
+    </div>
+  </div> -->
+
+</div>

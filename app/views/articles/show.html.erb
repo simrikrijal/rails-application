@@ -1,0 +1,79 @@
+<article class="detail-article">
+  <h1 style="margin-bottom: 30px;">
+    <%= @article.title %>
+  </h1>
+  <div class="glyphicon glyphicon-calendar" id="article-date">
+    <%= @article.created_at.strftime("%b-%d-%Y") %>
+  </div>
+  <div class="article-body" style="margin: 15px 0px;">
+    <pre>
+    <%= @article.body %>
+    </pre>
+  </div>
+
+  <% if user_signed_in? && current_user == @article.user %>
+    <div class="edit-delete">
+      <%= link_to "Edit Article", edit_article_path(@article), class: "btn btn-success" %>
+      <%= link_to "Delete Article", article_path(@article), method: :delete,
+      data: { confirm: "Are you sure you want to delete article?" },
+      class: "btn btn-danger" %>
+    </div>
+  <% end %>
+</article>
+
+<hr>
+
+<div class="col-md-12">
+  <%= form_for [@article, @comment], remote: true, :html => { class: 'form-horizontal', role: 'form' } do |f| %>
+    <% if @comment.errors.any? %>
+      <div class="panel panel-danger col-md-offset-1">
+        <div class="panel-heading">
+          <h2 class="panel-title">
+            <%= pluralize(@comment.errors.count,"error") %>
+            prohibited this comment from being saved
+          </h2>
+          <div class="panel-body">
+            <ul>
+              <% @comment.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <div class="form-group">
+      <div class="control-label col-md-2">
+        <%= f.label :body, "New comment" %>
+      </div>
+      <div class="col-md-8">
+        <%= f.text_area :body, rows: 0, class: 'form-control', placeholder: 'Your comment' %> 
+      </div>
+      <div class="col-md-2">
+         <%= f.submit "Add your comment", class: 'btn btn-primary btn-lg pull-right' %>
+      </div>
+    </div>
+
+  <% end %>
+</div>
+
+<div class="col-md-12">
+  <header>
+    <h2>Comments</h2>
+  </header>
+  <% if @article.comments.any? %>
+  <div id="messages" class="well well-sm">
+    <% persisted_comments(@comments).each do |comment| %>
+    <div class="comment-body">
+      <%= comment.body %>
+    </div>
+    <div class="comment-time">
+      <b>Commented by</b> <i> <%= comment.user.email %> </i> <b><%= time_ago_in_words(comment.created_at) %>
+      ago</b>
+    </div>
+    <% end %>
+  </div>
+   <% else %>
+    <p>'No comments yet'</p> 
+  <% end %>
+</div>

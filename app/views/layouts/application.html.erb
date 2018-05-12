@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ruby on Rails Blog Application</title>
+    <%= csrf_meta_tags %>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body style="background-image: url(/assets/image.jpg);">
+    <%= render 'shared/header' %>
+    <%= render 'shared/main' %>
+    <!--<h1>Publish your passions, your way</h1>
+    <h4>Create a unique and beautiful blog. It’s easy and free.</h4>
+
+    <div>
+     <button type="button">Create your blog</button> 
+    </div>-->
+  
+    <div class="footer">
+      <footer class="text-center">
+        Copyright &copy; Blog Application , Simrik Rijal, The British College
+    </footer>
+    </div>
+  </body>
+</html>
+
+
+    
