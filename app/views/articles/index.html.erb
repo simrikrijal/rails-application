@@ -8,14 +8,14 @@
   <h1 id="no-articles">No Articles Created</h1>
 <% else %>
   <% @articles.each do |article| %>
-    <div class="well well-lg">
+    <div class="well well-lg" style="overflow-y: auto;">
       <div class="article-title">
         <%= link_to article.title, article_path(article) %>
       </div>
-      <div class="article-body">
+      <div class="article-body" style="word-wrap: break-word;">
         <%= article.body %>
       </div>
-      <div class="author">
+      <div class="author" style="padding: 10px 0px !important;">
         <small>Created by: <%= article.user.email %></small>
       </div>
     </div>
